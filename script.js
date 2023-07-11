@@ -14,10 +14,10 @@ let myLibrary = [];
 
 function addBookToLibrary() {
     const book = new Book(prompt("Title?"), prompt("Author"), parseInt(prompt("Pages?")), prompt("Have you read it? true/false"));
-    const body = document.querySelector("body");
+    const bookContainer = document.querySelector(".main");
 
     const card = document.createElement("div");
-    body.appendChild(card);
+    bookContainer.appendChild(card);
 
     const ul = document.createElement("ul");
     card.appendChild(ul);
@@ -32,4 +32,3 @@ function addBookToLibrary() {
     myLibrary.push(book);
 }
 
-addBookToLibrary();
