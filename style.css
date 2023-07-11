@@ -44,6 +44,7 @@ html {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 300px));
     grid-auto-rows: 250px;
+    gap: 30px;
 }
 
 
@@ -51,11 +52,20 @@ html {
     font-size: 20px;
     margin-bottom: 20px;
 }
-.main div {
-    background-color: #D6C9C9;
+.main > div {
+    background-color: #ED9B40;
+    border-radius: 6px;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.main > div button {
+    padding: 4px 16px;
+    font-size: 18px;
+    background-color: rgb(206, 11, 11);
+    color: white;
+    border: none;
+    border-radius: 4px;
 }
 
 form {
@@ -75,6 +85,7 @@ form {
     right: 0;
     margin: auto;
     display: none;
+    box-shadow: 1px 1px 8px rgb(135, 132, 132);
 }
 input {
     padding: 3px 12px;

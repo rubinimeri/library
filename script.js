@@ -11,12 +11,21 @@ function Book(title, author, pages, read){
 }
 
 let myLibrary = [];
+let bookCounter = 0;
 
 function addBookToLibrary(title, author, pages, read) {
     const book = new Book(title, author, pages, read);
     const bookContainer = document.querySelector(".main");
 
     const card = document.createElement("div");
+    const btn = document.createElement("button");
+    btn.textContent = "Remove";
+
+    card.setAttribute("data-index-number", `${bookCounter}`)
+    btn.classList.add("card-button");
+    btn.setAttribute("data-index-number", `${bookCounter}`)
+    bookCounter++;
+
     bookContainer.appendChild(card);
 
     const ul = document.createElement("ul");
@@ -41,13 +50,28 @@ function addBookToLibrary(title, author, pages, read) {
             }
             
         }
+        ul.appendChild(btn);
     }
     myLibrary.push(book);
+    cardButtons.push(btn);
+
+    cardButtons.forEach(button => {
+        button.addEventListener("click", () => {
+            const divs = Array.from(document.querySelectorAll(".main > div"));
+            divs.forEach(div => {
+                if(div.getAttribute("data-index-number") === button.getAttribute("data-index-number")){
+                    document.querySelector(".main").removeChild(div);
+                    bookCounter--;
+                }
+            });
+        })
+    });
 }
 
 const addBook = document.querySelector(".add-book");
 const form = document.querySelector("form");
 const body = document.querySelector("body")
+const cardButtons = [];
 
 addBook.addEventListener("click", () => {
     form.style.display = "flex";
