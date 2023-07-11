@@ -13,7 +13,23 @@ function Book(title, author, pages, read){
 let myLibrary = [];
 
 function addBookToLibrary() {
-    myLibrary.push(new Book(prompt("Title?"), prompt("Author"), parseInt(prompt("Pages?")), prompt("Have you read it? true/false")))
+    const book = new Book(prompt("Title?"), prompt("Author"), parseInt(prompt("Pages?")), prompt("Have you read it? true/false"));
+    const body = document.querySelector("body");
+
+    const card = document.createElement("div");
+    body.appendChild(card);
+
+    const ul = document.createElement("ul");
+    card.appendChild(ul);
+
+    for (const property in book) {
+        const li = document.createElement("li");
+        if(!(property === "info")){
+            li.textContent = book[property];
+            ul.appendChild(li);
+        }
+    }
+    myLibrary.push(book);
 }
 
-addBookToLibrary()
+addBookToLibrary();
