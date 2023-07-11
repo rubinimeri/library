@@ -12,8 +12,8 @@ function Book(title, author, pages, read){
 
 let myLibrary = [];
 
-function addBookToLibrary() {
-    const book = new Book(prompt("Title?"), prompt("Author"), parseInt(prompt("Pages?")), prompt("Have you read it? true/false"));
+function addBookToLibrary(title, author, pages, read) {
+    const book = new Book(title, author, pages, read);
     const bookContainer = document.querySelector(".main");
 
     const card = document.createElement("div");
@@ -31,4 +31,20 @@ function addBookToLibrary() {
     }
     myLibrary.push(book);
 }
+
+const addBook = document.querySelector(".add-book");
+const form = document.querySelector("form");
+const body = document.querySelector("body")
+
+addBook.addEventListener("click", () => {
+    form.style.display = "flex";
+    addBook.disabled = true;
+})
+
+form.addEventListener("submit", () => {
+    event.preventDefault();
+    addBookToLibrary(document.querySelector("#title").value, document.querySelector("#author").value, document.querySelector("#pages").value, document.querySelector("#read").value);
+    form.style.display = "none"
+    addBook.disabled = false;
+})
 
