@@ -35,13 +35,23 @@ function addBookToLibrary(title, author, pages, read) {
         const li = document.createElement("li");
         if(!(property === "info")){
             if(property === "read"){
-                if(read.checked === 1){
-                    li.textContent = property.toUpperCase() + ": Read";
+                if(read.checked === true){
+                    const toggle = document.createElement("button");
+                    toggle.classList.add("toggle");
+                    toggle.textContent = "Read";
+                    toggle.style.backgroundColor = "green";
+                    li.appendChild(toggle);
                     ul.appendChild(li);
+                    toggleButtons.push(toggle);
                 }
                 else{
-                    li.textContent = property.toUpperCase() + ": Unread";
-                    ul.appendChild(li);                 
+                    const toggle = document.createElement("button");
+                    toggle.classList.add("toggle");
+                    toggle.textContent = "Unread";
+                    toggle.style.backgroundColor = "rgb(206, 11, 11)";
+                    li.appendChild(toggle);
+                    ul.appendChild(li); 
+                    toggleButtons.push(toggle);                
                 }
             }
             else{
@@ -66,12 +76,25 @@ function addBookToLibrary(title, author, pages, read) {
             });
         })
     });
+    toggleButtons.forEach(button => {
+        button.addEventListener("click", () => {
+            if(button.textContent === "Read"){
+                button.textContent = "Unread";
+                button.style.backgroundColor = "rgb(206, 11, 11)"
+            }
+            else{
+                button.textContent = "Read";
+                button.style.backgroundColor = "green";
+            }
+        })
+    })
 }
 
 const addBook = document.querySelector(".add-book");
 const form = document.querySelector("form");
 const body = document.querySelector("body")
 const cardButtons = [];
+const toggleButtons = [];
 
 addBook.addEventListener("click", () => {
     form.style.display = "flex";
@@ -79,9 +102,22 @@ addBook.addEventListener("click", () => {
 })
 
 form.addEventListener("submit", () => {
+    toggleButtons.forEach(button => {
+        button.addEventListener("click", () => {
+            if(button.textContent === "Read"){
+                button.textContent = "Unread";
+                button.style.backgroundColor = "rgb(206, 11, 11)"
+            }
+            else{
+                button.textContent = "Read";
+                button.style.backgroundColor = "green";
+            }
+        })
+    })
     event.preventDefault();
-    addBookToLibrary(document.querySelector("#title").value, document.querySelector("#author").value, document.querySelector("#pages").value, document.querySelector("#read").value);
+    addBookToLibrary(document.querySelector("#title").value, document.querySelector("#author").value, document.querySelector("#pages").value, document.querySelector("#read"));
     form.style.display = "none"
     addBook.disabled = false;
+    
 })
 

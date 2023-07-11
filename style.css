@@ -53,7 +53,8 @@ html {
     margin-bottom: 20px;
 }
 .main > div {
-    background-color: #ED9B40;
+    background-color: #ACBDBA;
+    box-shadow: 1px 2px 4px gray;
     border-radius: 6px;
     display: flex;
     justify-content: center;
