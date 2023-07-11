@@ -42,12 +42,20 @@ html {
     height: 100%;
 
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 300px));
     grid-auto-rows: 250px;
 }
 
-.main ul {
-    text-align: center;
+
+.main li {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+.main div {
+    background-color: #D6C9C9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 form {

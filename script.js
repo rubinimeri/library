@@ -25,8 +25,21 @@ function addBookToLibrary(title, author, pages, read) {
     for (const property in book) {
         const li = document.createElement("li");
         if(!(property === "info")){
-            li.textContent = book[property];
-            ul.appendChild(li);
+            if(property === "read"){
+                if(read.checked === 1){
+                    li.textContent = property.toUpperCase() + ": Read";
+                    ul.appendChild(li);
+                }
+                else{
+                    li.textContent = property.toUpperCase() + ": Unread";
+                    ul.appendChild(li);                 
+                }
+            }
+            else{
+                li.textContent = property.toUpperCase() + ": " + book[property];
+                ul.appendChild(li);
+            }
+            
         }
     }
     myLibrary.push(book);
