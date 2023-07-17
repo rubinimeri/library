@@ -1,5 +1,3 @@
-// Redesign factory function to class
-
 class Book {
     constructor(title, author, pages, read) {
         this.title = title,
