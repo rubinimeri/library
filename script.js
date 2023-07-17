@@ -1,12 +1,11 @@
-function Book(title, author, pages, read){
-    this.title = title,
-    this.author = author,
-    this.pages = pages,
-    this.read = read,
-    this.info = function() {
-        if(read === true)
-            return title + " by " + author + ", " + pages + " pages, " + "read";
-        return title + " by " + author + ", " + pages + " pages, " + "not read yet";
+// Redesign factory function to class
+
+class Book {
+    constructor(title, author, pages, read) {
+        this.title = title,
+        this.author = author,
+        this.pages = pages,
+        this.read = read
     }
 }
 
