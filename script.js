@@ -93,6 +93,7 @@ const title = document.getElementById("title")
 const author = document.getElementById("author")
 const pages = document.getElementById("pages");
 const body = document.querySelector("body")
+const submitButton = document.querySelector("form button");
 const cardButtons = [];
 const toggleButtons = [];
 
@@ -106,11 +107,13 @@ const setError = (input, span, message) => {
     input.classList.remove("success");
     input.classList.add("error");
     span.innerText = message;
+    submitButton.disabled = true;
 }
 const setSuccess = (input, span) => {
     input.classList.remove("error");
     input.classList.add("success");
     span.innerText = "";
+    submitButton.disabled = false;
 }
 
 title.addEventListener("input", () => {
@@ -123,6 +126,31 @@ title.addEventListener("input", () => {
         setSuccess(title, span);
     }
 });
+
+author.addEventListener("input", () => {
+    const container = author.parentElement;
+    const span = container.querySelector("span");
+    if(author.value === "") {
+        setError(author, span, "Author is required");
+    }
+    else {
+        setSuccess(author, span);
+    }
+})
+
+pages.addEventListener("input", () => {
+    const container = pages.parentElement;
+    const span = container.querySelector("span");
+    if(pages.value === "") {
+        setError(pages, span, "Pages are required");
+    }
+    else if(pages.value == 0 || pages.value < 0) {
+        setError(pages, span, "Pages must be bigger than 0")
+    }
+    else {
+        setSuccess(pages, span);
+    }
+})
 
 form.addEventListener("submit", () => {
     toggleButtons.forEach(button => {
