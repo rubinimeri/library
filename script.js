@@ -94,6 +94,7 @@ const author = document.getElementById("author")
 const pages = document.getElementById("pages");
 const body = document.querySelector("body")
 const submitButton = document.querySelector("form button");
+let canSubmit = false;
 const cardButtons = [];
 const toggleButtons = [];
 
@@ -107,13 +108,22 @@ const setError = (input, span, message) => {
     input.classList.remove("success");
     input.classList.add("error");
     span.innerText = message;
-    submitButton.disabled = true;
 }
 const setSuccess = (input, span) => {
     input.classList.remove("error");
     input.classList.add("success");
     span.innerText = "";
-    submitButton.disabled = false;
+}
+
+const checkError = () => {
+    const inputs = Array.from(document.querySelectorAll("form input"));
+
+    for (const input of inputs) {
+        if(input.classList.contains("error")){
+            return true;
+        }
+    }
+    return false;
 }
 
 title.addEventListener("input", () => {
@@ -152,6 +162,8 @@ pages.addEventListener("input", () => {
     }
 })
 
+
+
 form.addEventListener("submit", () => {
     toggleButtons.forEach(button => {
         button.addEventListener("click", () => {
@@ -166,9 +178,11 @@ form.addEventListener("submit", () => {
         })
     })
     event.preventDefault();
-    addBookToLibrary(document.querySelector("#title").value, document.querySelector("#author").value, document.querySelector("#pages").value, document.querySelector("#read"));
-    form.style.display = "none"
-    addBook.disabled = false;
-    
+
+    if(!checkError()){
+        addBookToLibrary(document.querySelector("#title").value, document.querySelector("#author").value, document.querySelector("#pages").value, document.querySelector("#read"));
+        form.style.display = "none"
+        addBook.disabled = false;
+    } 
 })
 
