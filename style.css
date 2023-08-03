@@ -91,7 +91,7 @@ form {
 input {
     padding: 3px 12px;
     outline: none;
-    border: 1px solid;
+    border: 2px solid white;
     font-size: 100%;
     font-size: 18px;
 }
@@ -106,9 +106,15 @@ form button {
     border-radius: 3px;
 }
 
-input:focus:valid {
-    border: 1px solid blue;
+.success {
+    border: 2px solid rgb(64, 255, 0);
 }
-input:focus:invalid {
-    border: 1px solid red;
+.error {
+    border: 2px solid red;
+}
+
+span {
+    display: block;
+    margin-top: 5px;
+    color: red;
 }

@@ -89,14 +89,40 @@ function addBookToLibrary(title, author, pages, read) {
 
 const addBook = document.querySelector(".add-book");
 const form = document.querySelector("form");
+const title = document.getElementById("title")
+const author = document.getElementById("author")
+const pages = document.getElementById("pages");
 const body = document.querySelector("body")
 const cardButtons = [];
 const toggleButtons = [];
+
 
 addBook.addEventListener("click", () => {
     form.style.display = "flex";
     addBook.disabled = true;
 })
+
+const setError = (input, span, message) => {
+    input.classList.remove("success");
+    input.classList.add("error");
+    span.innerText = message;
+}
+const setSuccess = (input, span) => {
+    input.classList.remove("error");
+    input.classList.add("success");
+    span.innerText = "";
+}
+
+title.addEventListener("input", () => {
+    const container = title.parentElement;
+    const span = container.querySelector("span");
+    if(title.value === "") {
+        setError(title, span, "Title is required");
+    }
+    else {
+        setSuccess(title, span);
+    }
+});
 
 form.addEventListener("submit", () => {
     toggleButtons.forEach(button => {
